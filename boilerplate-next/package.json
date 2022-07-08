@@ -1,0 +1,21 @@
+{
+  "name": "bun-next-starter",
+  "version": "0.0.1",
+  "main": "index.js",
+  "dependencies": {
+    "next": "^12.1.0",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-is": "^17.0.2"
+  },
+  "devDependencies": {
+    "@types/react": "^18",
+    "bun-framework-next": "^12",
+    "typescript": "latest"
+  },
+  "bun-create": {
+    "postinstall": [
+      "bun bun --use next"
+    ]
+  }
+}

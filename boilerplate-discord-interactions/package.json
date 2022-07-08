@@ -1,0 +1,7 @@
+{
+  "name": "bun-discord-interactions-starter",
+  "version": "0.0.1",
+  "dependencies": {
+    "slash-create": "^5.7.0"
+  }
+}

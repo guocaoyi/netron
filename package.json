@@ -1,0 +1,44 @@
+{
+  "name": "create-bun",
+  "version": "0.0.0",
+  "type": "module",
+  "description": "Scaffolding your bun project boilerplate",
+  "author": "yalda",
+  "license": "MIT",
+  "main": "index.js",
+  "bin": {
+    "create-bun": "index.js"
+  },
+  "engines": {
+    "node": ">=14.18.0"
+  },
+  "files": [
+    "mustache",
+    "boilerplate-*",
+    "index.js"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guocaoyi/create-bun.git"
+  },
+  "bugs": {
+    "url": "https://github.com/guocaoyi/create-bun/issues"
+  },
+  "keywords": [
+    "bun",
+    "create-bun",
+    "bun-example",
+    "bun-template",
+    "bun-boilerplate"
+  ],
+  "dependencies": {
+    "kolorist": "^1.5.1",
+    "minimist": "^1.2.6",
+    "mustache": "^4.2.0",
+    "prompts": "^2.4.2"
+  },
+  "optionalDependencies": {
+    "@types/node": "14.18.18",
+    "prettier": "^2.7.1"
+  }
+}
