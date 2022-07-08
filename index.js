@@ -7,7 +7,7 @@ import minimist from 'minimist'
 import prompts from 'prompts'
 import mustache from 'mustache'
 import { fileURLToPath } from 'url'
-import { red, ansi256, reset } from 'kolorist'
+import { ansi256, red, reset } from 'kolorist'
 
 const argv = minimist(process.argv.slice(2), { string: ['_'] })
 const cwd = process.cwd()
@@ -30,23 +30,6 @@ const Boilerplates = [
 const renameFiles = {
   '.gitignore.mustache': '.gitignore',
   '.npmignore.mustache': '.npmignore',
-}
-
-// @ts-ignore
-Date.prototype.format = function (fmt) {
-  const o = {
-    'M+': this.getMonth() + 1,
-    'd+': this.getDate(),
-  }
-  if (/(y+)/.test(fmt))
-    fmt = fmt.replace(RegExp.$1, (this.getFullYear() + '').substr(4 - RegExp.$1.length))
-  for (var k in o)
-    if (new RegExp('(' + k + ')').test(fmt))
-      fmt = fmt.replace(
-        RegExp.$1,
-        RegExp.$1.length == 1 ? o[k] : ('00' + o[k]).substr(('' + o[k]).length),
-      )
-  return fmt
 }
 
 async function init() {
@@ -162,31 +145,38 @@ async function init() {
     nowYear: new Date().format('yyyy'),
   }
 
+  const writeMu = (file, content) => {
+    const targetPath = renameFiles[file]
+      ? path.join(root, renameFiles[file])
+      : path.join(root, file)
+    copy(path.join(mustacheDir, file), targetPath, opts)
+  }
+
   const write = (file, content) => {
     const targetPath = renameFiles[file]
       ? path.join(root, renameFiles[file])
       : path.join(root, file)
     if (content) {
       fs.writeFileSync(targetPath, content)
-    } else if (/\.mustache$/gi.test(file)) {
-      copy(path.join(mustacheDir, file), targetPath, opts)
     } else {
       copy(path.join(templateDir, file), targetPath)
     }
   }
 
+  // write boilerpalte files
   const files = fs.readdirSync(templateDir)
   for (const file of files.filter((f) => f !== 'package.json')) {
     write(file)
   }
 
+  // merge mustache files
   const mFiles = fs.readdirSync(mustacheDir)
   for (const file of mFiles) {
-    write(file)
+    writeMu(file)
   }
 
+  // write package.json
   const pkg = JSON.parse(fs.readFileSync(path.join(templateDir, `package.json`), 'utf-8'))
-
   pkg.name = packageName || getProjectName()
   pkg.author = author || '*'
 
@@ -209,6 +199,23 @@ async function init() {
       console.log(`  ${pkgManager} run dev`)
       break
   }
+}
+
+// @ts-ignore
+Date.prototype.format = function (fmt) {
+  const o = {
+    'M+': this.getMonth() + 1,
+    'd+': this.getDate(),
+  }
+  if (/(y+)/.test(fmt))
+    fmt = fmt.replace(RegExp.$1, (this.getFullYear() + '').substr(4 - RegExp.$1.length))
+  for (var k in o)
+    if (new RegExp('(' + k + ')').test(fmt))
+      fmt = fmt.replace(
+        RegExp.$1,
+        RegExp.$1.length == 1 ? o[k] : ('00' + o[k]).substr(('' + o[k]).length),
+      )
+  return fmt
 }
 
 /**
