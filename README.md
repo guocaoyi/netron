@@ -6,11 +6,11 @@
 
 > Scaffolding your bun project boilerplate
 
+[Bun](https://bun.sh/) is a fast all-in-one JavaScript runtime
+
 ## Installing
 
 > Bun >= 0.1 and Node >= 14.18.0
-
-[Bun](https://bun.sh/) is a fast all-in-one JavaScript runtime
 
 ```bash
 # use npm-create command, or use pnpm | yarn
