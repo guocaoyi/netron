@@ -1,3 +1,5 @@
+![logo](./docs/logo.png)
+
 # Create Bun Boilerplates
 
 [![npm](https://img.shields.io/npm/v/create-bun?logo=npm)](https://www.npmjs.com/package/create-bun)
