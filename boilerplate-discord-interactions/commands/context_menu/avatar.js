@@ -1,4 +1,4 @@
-import { SlashCommand, ApplicationCommandType } from 'slash-create';
+import { SlashCommand, ApplicationCommandType } from 'slash-create'
 
 export default class AvatarCommand extends SlashCommand {
   constructor(creator) {
@@ -7,15 +7,15 @@ export default class AvatarCommand extends SlashCommand {
       // to `CHAT_INPUT`, or regular slash commands.
       type: ApplicationCommandType.USER,
       name: 'Get Avatar URL',
-    });
+    })
 
-    this.filePath = __filename;
+    this.filePath = __filename
   }
 
   async run(ctx) {
     // The target user can be accessed from here
     // You can also use `ctx.targetMember` for member properties
-    const target = ctx.targetUser;
-    return `${target.username}'s Avatar: ${target.avatarURL}`;
+    const target = ctx.targetUser
+    return `${target.username}'s Avatar: ${target.avatarURL}`
   }
 }

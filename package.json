@@ -1,6 +1,6 @@
 {
   "name": "create-bun",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
   "description": "Scaffolding your bun project boilerplate",
   "author": "yalda",
@@ -23,6 +23,9 @@
   },
   "bugs": {
     "url": "https://github.com/guocaoyi/create-bun/issues"
+  },
+  "scripts": {
+    "fmt": "prettier --write '**/*.{js,jsx,ts,tsx,md,json,yml,yaml,css,scss,html}'"
   },
   "keywords": [
     "bun",

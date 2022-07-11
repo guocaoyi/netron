@@ -1,13 +1,13 @@
-import { SlashCommand, ComponentType, TextInputStyle } from 'slash-create';
+import { SlashCommand, ComponentType, TextInputStyle } from 'slash-create'
 
 export default class ModalCommand extends SlashCommand {
   constructor(creator) {
     super(creator, {
       name: 'modal',
-      description: 'Send a cool modal.'
-    });
+      description: 'Send a cool modal.',
+    })
 
-    this.filePath = __filename;
+    this.filePath = __filename
   }
 
   async run(ctx) {
@@ -25,9 +25,9 @@ export default class ModalCommand extends SlashCommand {
                 label: 'Text Input',
                 style: TextInputStyle.SHORT,
                 custom_id: 'text_input',
-                placeholder: 'Type something...'
-              }
-            ]
+                placeholder: 'Type something...',
+              },
+            ],
           },
           {
             type: ComponentType.ACTION_ROW,
@@ -37,15 +37,17 @@ export default class ModalCommand extends SlashCommand {
                 label: 'Long Text Input',
                 style: TextInputStyle.PARAGRAPH,
                 custom_id: 'long_text_input',
-                placeholder: 'Type something...'
-              }
-            ]
-          }
-        ]
+                placeholder: 'Type something...',
+              },
+            ],
+          },
+        ],
       },
       (mctx) => {
-        mctx.send(`Your input: ${mctx.values.text_input}\nYour long input: ${mctx.values.long_text_input}`);
-      }
-    );
+        mctx.send(
+          `Your input: ${mctx.values.text_input}\nYour long input: ${mctx.values.long_text_input}`,
+        )
+      },
+    )
   }
 }

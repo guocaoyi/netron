@@ -1,2 +1,2 @@
-Error.captureStackTrace = () => {};
-Buffer.isBuffer = Buffer.isBuffer.bind(Buffer);
+Error.captureStackTrace = () => {}
+Buffer.isBuffer = Buffer.isBuffer.bind(Buffer)

@@ -1,4 +1,3 @@
-
 export default function Hey() {
-  return <div>!!yep</div>;
+  return <div>!!yep</div>
 }
